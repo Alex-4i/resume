@@ -1,172 +1,172 @@
-# Алексей Воробьёв — резюме и кейсы
+# Alexey Vorobyev: Resume and Case Studies
 
-**Основатель и генеральный директор [Промум Тех](https://promum.tech)** — внедряю ИИ на российских промышленных предприятиях и строю продукты вокруг этого: от платформы с ИИ-чатом и автоматизациями до внутренних систем учёта.
+**Founder and CEO of [Promum Tech](https://promum.tech).** I bring AI into Russian industrial companies and build products around it: from a platform with an AI chat and automations to internal accounting systems.
 
-Я продаю, проектирую и собираю сам: общаюсь с заказчиком, разбираю процесс, пишу ТЗ и коммерческое предложение, делаю прототип, довожу до работающего стенда. Код пишу с AI-агентами (Claude Code и др.) — это мой рабочий инструмент, и я знаю, где он ускоряет, а где требует жёсткого контроля: тесты, проверка чисел, изоляция, ручной разбор результата.
+I sell, design and build: I talk to the customer, map the process, write the spec and the commercial proposal, build a prototype and bring it to a working demo environment. I write code together with AI agents (Claude Code and others). It is my everyday tool, and I know where it speeds things up and where it needs tight control: tests, number verification, isolation, manual review of results.
 
 - GitHub: [Alex-4i](https://github.com/Alex-4i)
-- Telegram-канал: [t.me/deal_in_product](https://t.me/deal_in_product)
+- Telegram channel: [t.me/deal_in_product](https://t.me/deal_in_product)
 
-> Названия заказчиков и коммерческие условия намеренно не раскрываю: часть проектов под NDA. Описываю задачу, решение и результат.
+> Customer names and commercial terms are deliberately not disclosed: some projects are under NDA. I describe the problem, the solution and the outcome.
 
 ---
 
-## Чем занимаюсь
+## What I Do
 
-| Направление | Что именно |
+| Area | Scope |
 |---|---|
-| ИИ для промышленности | ассистенты по данным 1С, анализ чертежей и КД, нормирование, документы по шаблонам, компьютерное зрение для контроля качества |
-| Продуктовая разработка | мультитенантные платформы, внутренние системы учёта, CRM/PM, лендинги с лидогенерацией |
-| Консалтинг | предпроектный аудит, оценка окупаемости, карты процессов AS-IS/TO-BE, пилоты с честной оценкой рисков |
-| Продажи и маркетинг | холодные B2B-рассылки, воронки, контент для личного бренда |
+| AI for industry | assistants over 1C data, drawing and design-documentation analysis, labor-time estimation, template-based documents, computer vision for quality control |
+| Product development | multi-tenant platforms, internal accounting systems, CRM/PM, lead-generation landing pages |
+| Consulting | pre-project audit, payback estimates, AS-IS/TO-BE process maps, pilots with an honest risk assessment |
+| Sales and marketing | cold B2B outreach, funnels, personal-brand content |
 
-**Стек:** Python (Flask), TypeScript, Next.js 15, React, Prisma, PostgreSQL, SQLite, MongoDB, Docker, nginx, LibreChat, DeepSeek / Claude / локальные модели, OData и REST для 1С 8.3, amoCRM, Битрикс24, Telegram Bot API, PaddleOCR-VL, python-pptx, Playwright / headless Chrome.
-
----
-
-## Кейсы и проекты
-
-### 1. Промум AI — платформа ИИ для промышленных предприятий
-
-**Бизнес-проблема.** Предприятия на 1С ERP и доработанных старых 1С хотят работать с данными и документами через ИИ, но не могут отдать данные в публичный чат и не доверяют цифрам, которые «придумала» модель.
-
-**Что сделал.** Платформа поверх движка LibreChat (используется как headless-ядро): ИИ-чат с доступом к данным 1С через шлюз, режим исследования, автоматизации на естественном языке (модуль Flow), готовые «продукты» под задачи заказчика, аналитические дашборды и отчёты (PDF и PPTX).
-
-**Технические задачи:**
-- **Расчётный слой.** Модель не считает сама: она составляет план расчёта, а цифры считает платформа. Числа в ответе сверяются с результатами расчёта; непроверенные возвращаются модели на пересчёт. Покрыто автотестами (более 900 проверок в общем прогоне).
-- **Обезличивание запросов** перед отправкой во внешние модели: правила по реквизитам, ФИО, юрлицам и суммам плюс LLM-ревизор для данных из внутренних источников.
-- **Отдельный веб-шлюз** — единственный сервис с выходом в интернет, защита от SSRF, чтение страниц и PDF с OCR.
-- **Ответ живёт на сервере, а не во вкладке:** генерация идёт в отдельном потоке, вкладку можно закрыть и вернуться.
-- **Безопасность по умолчанию:** песочница для недоверенного HTML, исходящие запросы из автоматизаций запрещены по умолчанию, учётные системы клиента — только на чтение, защита от подделки запросов, срок жизни сессий.
-- **Модульное ядро** с реестром модулей, миграциями схемы на модуль, лицензированием и учётом расхода токенов по сотрудникам, отделам и продуктам, с лимитами.
-- **Вложения в диалоге:** разбор в фоне, поиск по фрагментам с указанием страницы и листа, таблицы xlsx/csv как источник для расчётов.
-- **Замеры нагрузки:** 50 одновременных сессий на ноутбуке, узкое место — модель, а не платформа; расчёт памяти GPU под локальные модели.
-- Оптимизация: сложный многосоставной вопрос ускорен с 35 до 20 минут за счёт разделения «быстрой» и «вдумчивой» фаз модели и доработки расчётного слоя.
-
-**Стек:** Python, Flask, SSE, SQLite (WAL), MongoDB, LibreChat, DeepSeek, Waitress, python-pptx.
+**Stack:** Python (Flask), TypeScript, Next.js 15, React, Prisma, PostgreSQL, SQLite, MongoDB, Docker, nginx, LibreChat, DeepSeek / Claude / local models, OData and REST for 1C 8.3, amoCRM, Bitrix24, Telegram Bot API, PaddleOCR-VL, python-pptx, Playwright / headless Chrome.
 
 ---
 
-### 2. Сравнение версий чертежей и извещения об изменении (КД) — производитель техники
+## Case Studies
 
-**Бизнес-проблема.** При изменении чертежа конструктор вручную находит отличия, пишет извещение, рассылает его и ищет, в каких ещё изделиях применяется деталь. Это долго и приводит к пропущенным правкам.
+### 1. Promum AI: an AI platform for industrial enterprises
 
-**Что сделал.**
-- Через COM-интерфейс КОМПАС-3D прочитал чертежи и сравнил две версии: размеры, геометрия, штамп. Объекты сопоставляются по внутреннему идентификатору.
-- Проверил на эталоне: клиент внёс 11 правок пяти типов в копии чертежей, все найдены, ложных срабатываний нет, контроль «пересохранил без правок» дал ноль находок.
-- Спроектировал TO-BE процесс: сравнение, черновик извещения с редактируемыми полями, замена КД в архиве, рассылка, проверка применяемости.
-- Собрал демо продукта «Изменение КД» в платформе.
-- Честно зафиксировал: на реальной паре ревизий совпадение по идентификатору только 41–57%, геометрия «шумит», поэтому риск снижен, но не снят, и идти нужно платным пилотом, не обещая результат заранее.
+**Business problem.** Companies running 1C ERP (including heavily customized legacy versions) want to work with their data and documents through AI, but cannot send data to a public chat and do not trust numbers the model "made up".
 
-**Результат:** клиент получил ФТ, коммерческое предложение и требования к инфраструктуре для своей ИТ-службы. Параллельно разобраны задачи нормирования труда по чертежу (справочники 1970–80-х оцифрованы через OCR) и генерации паспортов изделий.
+**What I built.** A platform on top of the LibreChat engine (used as a headless core): an AI chat with access to 1C data through a gateway, a research mode, automations in natural language (the Flow module), ready-made "products" for specific customer tasks, analytical dashboards and reports (PDF and PPTX).
 
-**Стек:** Python, pywin32 (COM), КОМПАС-3D, PaddleOCR-VL.
+**Technical challenges:**
+- **Calculation layer.** The model does not do the math itself: it composes a calculation plan, and the platform computes the numbers. Figures in the answer are checked against the results; unverified ones are sent back to the model for recalculation. Covered by automated tests (over 900 checks in the full run).
+- **Request anonymization** before sending to external models: rules for requisites, personal names, legal entities and amounts, plus an LLM reviewer for data coming from internal sources.
+- **A separate web gateway** that is the only service with internet access, with SSRF protection and page/PDF reading with OCR.
+- **The answer lives on the server, not in the browser tab:** generation runs in a separate thread, so the tab can be closed and reopened.
+- **Secure by default:** sandbox for untrusted HTML, outbound requests from automations denied by default, customer systems read-only, request-forgery protection, session lifetimes.
+- **Modular core** with a module registry, per-module schema migrations, licensing, and token-usage accounting per employee, department and product, with limits.
+- **Chat attachments:** background parsing, fragment search with page and sheet references, xlsx/csv tables as a source for calculations.
+- **Load measurements:** 50 concurrent sessions on a laptop; the bottleneck is the model, not the platform. GPU memory sizing for local models.
+- **Optimization:** a complex multi-part question was sped up from 35 to 20 minutes by separating "fast" and "deliberate" model phases and improving the calculation layer.
 
----
-
-### 3. ИИ-ассистент по номенклатуре и расчёту сырья — производитель металлоконструкций
-
-**Бизнес-проблема.** Номенклатуру заказчика нужно вручную сопоставлять с внутренней номенклатурой в 1С УПП и считать расход сырья.
-
-**Что сделал.** Провёл предпроектный аудит и две встречи с заказчиком, спроектировал решение на базе платформы (п. 1): сопоставление позиций и расчёт сырья, с доступом к данным через OData. Это стало первым клиентом платформы.
+**Stack:** Python, Flask, SSE, SQLite (WAL), MongoDB, LibreChat, DeepSeek, Waitress, python-pptx.
 
 ---
 
-### 4. Автоматизация выпуска конструкторской документации — производитель электрооборудования
+### 2. Drawing version comparison and change notices (design documentation): equipment manufacturer
 
-**Бизнес-проблема.** Чертежи, спецификации, DXF и альбомы схем по каждому опросному листу собираются вручную в КОМПАС / AutoCAD / SolidWorks.
+**Business problem.** When a drawing changes, the designer manually finds the differences, writes a change notice, distributes it and looks for other products that use the part. It is slow and leads to missed changes.
 
-**Что сделал.** Провёл встречи, оформил NDA и соглашение, подготовил план пилота: тест замены элемента в схемах как минимальная проверка гипотезы. Сравнил подходы «классическая автоматизация 1С» и «ИИ» и честно обозначил границы каждого.
+**What I did.**
+- Read drawings through the COM interface of KOMPAS-3D and compared two versions: dimensions, geometry, title block. Objects are matched by their internal identifier.
+- Validated against a reference set: the customer made 11 edits of five types in copies of the drawings; all were found, there were no false positives, and a control "re-saved without changes" produced zero findings.
+- Designed the TO-BE process: comparison, a draft change notice with editable fields, replacement of the drawing in the archive, distribution, where-used check.
+- Built a demo of the "Design change" product inside the platform.
+- Recorded honestly: on a real pair of revisions only 41-57% of objects matched by identifier and the geometry is noisy, so the risk is reduced but not removed, and the way forward is a paid pilot without promising results in advance.
 
----
+**Outcome:** the customer received a functional specification, a commercial proposal and infrastructure requirements for their IT department. In parallel I worked on labor-time estimation from drawings (reference books from the 1970s-80s digitized with OCR) and on generating product manuals.
 
-### 5. Диспетчеризация бетона и документооборот — производитель бетона
-
-**Бизнес-проблема.** Оформление накладных и паспортов качества с ошибками занимает 5–10 минут, а нужно 30 секунд; заявки теряются; нет очередности работы с водителями.
-
-**Что сделал.** За день до встречи с руководством собрал кликабельную демонстрацию одним HTML-файлом без интернета: доска и диаграмма Ганта с предложением плана, расчёт доставки в заявке, документы за 30 секунд, единое окно заявок, экран водителя, разбор письма-заявки «на глазах». Сделал отраслевое исследование, сценарии и синтетические данные с проверяемым расчётным ядром. Факты, в которых не был уверен (например, штрафы по электронной транспортной накладной), пометил как неподтверждённые.
-
----
-
-### 6. Конвейер холодных B2B-рассылок: база → письма → отправка → аналитика
-
-**Бизнес-проблема.** Нужен стабильный поток входящих обращений от промышленных предприятий без отдела продаж.
-
-**Что сделал.**
-- Панель аутрича (Next.js + Prisma/SQLite): клиенты, проекты, сегменты (один сегмент = одна гипотеза письма), общий реестр компаний с уникальным ИНН, ящики с синхронизацией отправленных, аналитика ответов.
-- Генерация писем по базам из сервисов-агрегаторов: промпт с гейтами по выручке и штату, проверка запрещённых слов и соответствия предложения размеру компании, исследование сайта для крупных компаний.
-- Отправка пачками через планировщик: защита от дублей на уровне состояния, общий чёрный список по доменам и адресам, дедупликация против всех ящиков (более 16 тысяч уже контактированных адресов в срезе).
-- Решил типичные грабли: нумерация писем между пачками, блокировка DNS при VPN, сон ноутбука, пустая папка «Отправленные».
-- Провёл ребрендинг-досылку по базе: около 1,4 тысяч и 1,7 тысяч писем двумя кампаниями.
-
-**Результат:** воронка даёт живые лиды (в том числе производственные предприятия, с которыми прошли встречи и аудит).
+**Stack:** Python, pywin32 (COM), KOMPAS-3D, PaddleOCR-VL.
 
 ---
 
-### 7. Внутренняя финансовая платформа (двойная запись)
+### 3. AI assistant for item-master matching and raw-material calculation: metal structures manufacturer
 
-**Бизнес-проблема.** Агентству нужно видеть реальную прибыль по направлениям (проекты, подписочный продукт, рассылки) с учётом налога на УСН, обязательств перед клиентами и общих расходов.
+**Business problem.** The customer's item list has to be matched by hand to the internal item master in 1C UPP, and raw-material consumption calculated.
 
-**Что сделал.**
-- Полноценный двойной учёт: счета, проводки, **независимый триггер Postgres на баланс проводки**, append-only журнал (исправления только сторнированием), закрытие периодов только вперёд, мультивалютность.
-- Импорт банковских выписок (CSV в CP1251 и 1С) с правилами распознавания и сверкой.
-- Отчёты P&L, Cashflow, Balance Sheet; прибыль в три уровня: по источнику, общие расходы, чистая.
-- Спецификация модели по реальным выпискам: налог УСН 6% со всей поступившей суммы, пополнение баланса клиента как обязательство, а не выручка.
-
-**Стек:** Next.js 15, TypeScript, Prisma 6, PostgreSQL, JWT (ротация refresh-токенов), Tailwind, recharts.
+**What I did.** Ran a pre-project audit and two meetings with the customer, and designed a solution on the platform (case 1): item matching and raw-material calculation, with data access via OData. This became the first customer of the platform.
 
 ---
 
-### 8. promum.router — AI-шлюз и биллинг
+### 4. Automating design-documentation output: electrical equipment manufacturer
 
-**Бизнес-проблема.** Нужно продавать доступ к моделям клиентам с учётом расхода в рублях, лимитами и аудитом.
+**Business problem.** Drawings, specifications, DXF files and schematic albums for every questionnaire are assembled by hand in KOMPAS / AutoCAD / SolidWorks.
 
-**Что сделал.** Мультитенантный контур управления: организации, рабочие пространства, проекты, продукты; маршрутизация запросов к моделям по политикам с цепочками запасных вариантов; биллинг в рублях по курсу ЦБ, леджер, аналитика расхода, аудит; роли оператора платформы и администратора клиента.
-
-**Стек:** Next.js, TypeScript, Prisma.
+**What I did.** Held meetings, arranged the NDA and agreement, and prepared a pilot plan: a test of replacing an element in schematics as the minimum check of the hypothesis. Compared "classic 1C automation" with "AI" and stated honestly where each one ends.
 
 ---
 
-### 9. Client Success Platform — CRM и управление проектами внедрения
+### 5. Concrete dispatching and paperwork: concrete producer
 
-**Бизнес-проблема.** Продажа, договоры, проекты внедрения и поддержка живут в разных местах, история компании теряется.
+**Business problem.** Issuing delivery notes and quality certificates with errors takes 5-10 minutes when it should take 30 seconds; orders get lost; there is no queueing for drivers.
 
-**Что сделал.** Спроектировал архитектуру по практикам PSA и открытых систем управления проектами: «спайн» вокруг сущности компании со стабильным идентификатором (как партнёр в Odoo), членство «пользователь × проект × роль», статусы из настраиваемого workflow, неизменяемая лента событий. Реализовал фундамент (авторизация, компании, сотрудники, реестр доступов), CRM и управление проектами. Заложил единую ленту истории компании из нескольких источников: форма CRM, расшифровки встреч, вики.
-
----
-
-### 10. Сайты и лидогенерация
-
-- Лендинги для [Промум Тех](https://promum.tech): Next.js 15, формы заявок с записью в БД и уведомлением в Telegram, страницы кейсов (ИИ-ассистент для лакокрасочного производства, компьютерное зрение для контроля геометрии ПВХ-профиля и в металлообработке, ИИ-ассистент по резервуарам).
-- [TalkLens](https://github.com/Alex-4i/talklens_ai) — сайт продукта диалоговой аналитики для e-commerce: Vite + React + Tailwind, пять отраслевых версий на поддомены, nginx по заголовку Host, Docker, Let's Encrypt, SEO, согласие на cookie до загрузки метрики, юридические документы по требованиям 152-ФЗ, шрифты на своём хостинге, чтобы не было трансграничной передачи данных.
+**What I did.** In a day, before a meeting with management, I built a clickable demo as a single offline HTML file: a board and Gantt chart with plan suggestion, delivery calculation inside the order, documents in 30 seconds, a single orders window, a driver screen, and "live" parsing of an incoming order email. I added industry research, scenarios and synthetic data with a verifiable calculation core. Facts I was not sure about (for example, penalties under the electronic consignment note rules) are marked as unconfirmed.
 
 ---
 
-### 11. Корпоративный портал и подбор фильтров (предпроектные проработки)
+### 6. Cold B2B outreach pipeline: database, letters, sending, analytics
 
-- Портал для компании на 92 сотрудника: бриф, письмо заказчику, подготовка к коммерческому предложению.
-- Ассистент по подбору промышленных фильтров: сборка брифа и модели выбора.
+**Business problem.** A steady flow of inbound inquiries from industrial companies is needed without a sales department.
 
----
+**What I did.**
+- An outreach panel (Next.js + Prisma/SQLite): clients, projects, segments (one segment is one letter hypothesis), a shared company registry with unique tax IDs, mailboxes with sent-mail sync, reply analytics.
+- Letter generation from company databases: a prompt with gates by revenue and headcount, checks for banned words and for fit between the offer and the company size, website research for larger companies.
+- Batch sending through a scheduler: state-level duplicate protection, a shared blocklist by domain and address, deduplication against all mailboxes (over 16,000 already contacted addresses in one snapshot).
+- Solved typical pitfalls: numbering between batches, DNS blackholing over VPN, laptop sleep, an empty Sent folder.
+- Ran a rebranding follow-up on the base: about 1.4 thousand and 1.7 thousand letters in two campaigns.
 
-### 12. Обучение и личные продукты
-
-- **Курс консультанта для промышленности** (веб-приложение): 30 занятий по 45 минут, около 130 вопросов с чередованием вариантов, повторение по интервалам, 17 SVG-схем с автоматической проверкой наложений текста, задачи с эталонным решением, доступным только ИИ-наставнику, автоматические проверки данных и интерфейса.
-- **Система досье компаний:** по ИНН и любому куску информации ИИ размечает отрасль, размер и тип производства и раскладывает в карточки Markdown для кросс-срезов.
-- **Wake Up!** — веб-прототип мобильного приложения-будильника по макету Figma (Vite + React).
-- **Блог и контент про ИИ в работе:** конвейер Telegram → Instagram, воронка, лид-магниты, метрика «слово ÷ просмотры».
-- Локальный OCR на PaddleOCR-VL для сканов и фото страниц.
+**Outcome:** the funnel produces live leads, including manufacturers with whom meetings and audits took place.
 
 ---
 
-## Как я работаю
+### 7. Internal finance platform (double-entry bookkeeping)
 
-- **Сначала задача, потом технология.** На аудите бывает честный ответ «здесь нужна классическая автоматизация 1С, а не ИИ».
-- **Не обещаю того, что не проверено.** Сначала эталон и измеримая гипотеза, затем платный пилот.
-- **Безопасность закладываю с начала:** изоляция, запрет исходящих запросов по умолчанию, обезличивание, хранение секретов вне репозитория.
-- **Проверяемость.** Числа в ответах ИИ сверяются кодом, у платформы автотесты, у финансов баланс гарантирует база данных.
-- **Документирую решения:** почему выбрано так, а не иначе, что отложено и что остаётся открытым.
+**Business problem.** The agency needs to see real profit per business line (projects, a subscription product, mailings), accounting for simplified-tax-regime tax, obligations to customers and shared expenses.
+
+**What I did.**
+- Full double-entry accounting: accounts, journal entries, an **independent Postgres trigger enforcing entry balance**, an append-only ledger (corrections only by reversal), periods closed forward only, multi-currency.
+- Import of bank statements (CSV in CP1251 and 1C format) with recognition rules and reconciliation.
+- P&L, Cashflow and Balance Sheet reports; profit in three levels: per source, shared expenses, net.
+- A model specification based on real statements: 6% tax on the full amount received, customer balance top-ups treated as a liability rather than revenue.
+
+**Stack:** Next.js 15, TypeScript, Prisma 6, PostgreSQL, JWT (refresh-token rotation), Tailwind, recharts.
 
 ---
 
-*Резюме обновляется по мере появления новых проектов.*
+### 8. promum.router: AI gateway and billing
+
+**Business problem.** Access to models must be sold to customers with usage accounting in rubles, limits and audit.
+
+**What I did.** A multi-tenant control plane: organizations, workspaces, projects, products; policy-based routing of requests to models with fallback chains; billing in rubles at the central bank rate, a ledger, usage analytics, audit; platform-operator and customer-admin roles.
+
+**Stack:** Next.js, TypeScript, Prisma.
+
+---
+
+### 9. Client Success Platform: CRM and implementation project management
+
+**Business problem.** Sales, contracts, implementation projects and support live in different places, and company history gets lost.
+
+**What I did.** Designed the architecture using PSA practices and open-source project-management systems: a "spine" around a company entity with a stable ID (like the partner in Odoo), membership as user x project x role, statuses from a configurable workflow, an immutable event feed. Implemented the foundation (authentication, companies, employees, access registry), CRM and project management. Laid the groundwork for a unified company history feed from several sources: CRM form, meeting transcripts, wiki.
+
+---
+
+### 10. Websites and lead generation
+
+- Landing pages for [Promum Tech](https://promum.tech): Next.js 15, lead forms that write to the database and notify Telegram, case pages (an AI assistant for a paint and coatings producer, computer vision for PVC profile geometry control and for metalworking, an AI assistant for tank operations).
+- [TalkLens](https://github.com/Alex-4i/talklens_ai): a website for a conversation-analytics product for e-commerce. Vite + React + Tailwind, five industry versions on subdomains, nginx routing by Host header, Docker, Let's Encrypt, SEO, cookie consent before the analytics script loads, legal documents aligned with Russian personal-data law (152-FZ), self-hosted fonts to avoid cross-border data transfer.
+
+---
+
+### 11. Corporate portal and filter selection (pre-project studies)
+
+- A portal for a company of 92 employees: brief, letter to the customer, preparation for a commercial proposal.
+- An assistant for selecting industrial filters: building the brief and the selection model.
+
+---
+
+### 12. Training and personal projects
+
+- **A consultant course for industry** (web app): 30 lessons of 45 minutes, about 130 questions with alternating variants, spaced repetition, 17 SVG diagrams with an automatic text-overlap check, tasks with a reference solution visible only to the AI mentor, automated data and UI checks.
+- **A company dossier system:** from a tax ID and any piece of information, AI tags industry, size and production type and files it into Markdown cards for cross-cuts.
+- **Wake Up!:** a web prototype of an alarm-clock mobile app built from a Figma design (Vite + React).
+- **A blog and content about AI at work:** a Telegram to Instagram pipeline, a funnel, lead magnets, a "keyword / views" metric.
+- A local OCR on PaddleOCR-VL for scans and page photos.
+
+---
+
+## How I Work
+
+- **Problem first, technology second.** An audit may end with an honest "this needs classic 1C automation, not AI".
+- **I do not promise what has not been verified.** First a reference set and a measurable hypothesis, then a paid pilot.
+- **Security from the start:** isolation, outbound requests denied by default, anonymization, secrets kept out of repositories.
+- **Verifiability.** Numbers in AI answers are checked by code, the platform has automated tests, and in finance the database guarantees balance.
+- **I document decisions:** why it was done this way and not another, what was postponed and what remains open.
+
+---
+
+*This resume is updated as new projects appear.*
