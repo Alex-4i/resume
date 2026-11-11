@@ -1,11 +1,10 @@
 # Alexey Vorobyev: Resume and Case Studies
 
-**Founder and CEO of [Promum Tech](https://promum.tech).** I bring AI into Russian industrial companies and build products around it: from a platform with an AI chat and automations to internal accounting systems.
+**CEO of an AI agency.** I bring AI into industrial companies and build products around it: from a platform with an AI chat and automations to internal accounting systems.
 
 I sell, design and build: I talk to the customer, map the process, write the spec and the commercial proposal, build a prototype and bring it to a working demo environment. I write code together with AI agents (Claude Code and others). It is my everyday tool, and I know where it speeds things up and where it needs tight control: tests, number verification, isolation, manual review of results.
 
 - GitHub: [Alex-4i](https://github.com/Alex-4i)
-- Telegram channel: [t.me/deal_in_product](https://t.me/deal_in_product)
 
 > Customer names and commercial terms are deliberately not disclosed: some projects are under NDA. I describe the problem, the solution and the outcome.
 
@@ -15,22 +14,22 @@ I sell, design and build: I talk to the customer, map the process, write the spe
 
 | Area | Scope |
 |---|---|
-| AI for industry | assistants over 1C data, drawing and design-documentation analysis, labor-time estimation, template-based documents, computer vision for quality control |
+| AI for industry | assistants over ERP data, drawing and design-documentation analysis, labor-time estimation, template-based documents, computer vision for quality control |
 | Product development | multi-tenant platforms, internal accounting systems, CRM/PM, lead-generation landing pages |
 | Consulting | pre-project audit, payback estimates, AS-IS/TO-BE process maps, pilots with an honest risk assessment |
 | Sales and marketing | cold B2B outreach, funnels, personal-brand content |
 
-**Stack:** Python (Flask), TypeScript, Next.js 15, React, Prisma, PostgreSQL, SQLite, MongoDB, Docker, nginx, LibreChat, DeepSeek / Claude / local models, OData and REST for 1C 8.3, amoCRM, Bitrix24, Telegram Bot API, PaddleOCR-VL, python-pptx, Playwright / headless Chrome.
+**Stack:** Python (Flask), TypeScript, Next.js 15, React, Prisma, PostgreSQL, SQLite, MongoDB, Docker, nginx, LibreChat, DeepSeek / Claude / local models, OData and REST integrations with ERP and CRM systems, chat-bot APIs, PaddleOCR-VL, python-pptx, Playwright / headless Chrome.
 
 ---
 
 ## Case Studies
 
-### 1. Promum AI: an AI platform for industrial enterprises
+### 1. Enterprise AI platform for industrial companies
 
-**Business problem.** Companies running 1C ERP (including heavily customized legacy versions) want to work with their data and documents through AI, but cannot send data to a public chat and do not trust numbers the model "made up".
+**Business problem.** Companies running an ERP (including heavily customized legacy versions) want to work with their data and documents through AI, but cannot send data to a public chat and do not trust numbers the model "made up".
 
-**What I built.** A platform on top of the LibreChat engine (used as a headless core): an AI chat with access to 1C data through a gateway, a research mode, automations in natural language (the Flow module), ready-made "products" for specific customer tasks, analytical dashboards and reports (PDF and PPTX).
+**What I built.** A platform on top of the LibreChat engine (used as a headless core): an AI chat with access to ERP data through a data-access gateway, a research mode, automations in natural language (the Flow module), ready-made "products" for specific customer tasks, analytical dashboards and reports (PDF and PPTX).
 
 **Technical challenges:**
 - **Calculation layer.** The model does not do the math itself: it composes a calculation plan, and the platform computes the numbers. Figures in the answer are checked against the results; unverified ones are sent back to the model for recalculation. Covered by automated tests (over 900 checks in the full run).
@@ -52,7 +51,7 @@ I sell, design and build: I talk to the customer, map the process, write the spe
 **Business problem.** When a drawing changes, the designer manually finds the differences, writes a change notice, distributes it and looks for other products that use the part. It is slow and leads to missed changes.
 
 **What I did.**
-- Read drawings through the COM interface of KOMPAS-3D and compared two versions: dimensions, geometry, title block. Objects are matched by their internal identifier.
+- Read drawings through the COM interface of the KOMPAS-3D CAD system and compared two versions: dimensions, geometry, title block. Objects are matched by their internal identifier.
 - Validated against a reference set: the customer made 11 edits of five types in copies of the drawings; all were found, there were no false positives, and a control "re-saved without changes" produced zero findings.
 - Designed the TO-BE process: comparison, a draft change notice with editable fields, replacement of the drawing in the archive, distribution, where-used check.
 - Built a demo of the "Design change" product inside the platform.
@@ -66,9 +65,9 @@ I sell, design and build: I talk to the customer, map the process, write the spe
 
 ### 3. AI assistant for item-master matching and raw-material calculation: metal structures manufacturer
 
-**Business problem.** The customer's item list has to be matched by hand to the internal item master in 1C UPP, and raw-material consumption calculated.
+**Business problem.** The customer's item list has to be matched by hand to the internal item master in the ERP, and raw-material consumption calculated.
 
-**What I did.** Ran a pre-project audit and two meetings with the customer, and designed a solution on the platform (case 1): item matching and raw-material calculation, with data access via OData. This became the first customer of the platform.
+**What I did.** Ran a pre-project audit and two meetings with the customer, and designed a solution on the platform (case 1): item matching and raw-material calculation, with ERP data access via OData. This became the first customer of the platform.
 
 ---
 
@@ -76,7 +75,7 @@ I sell, design and build: I talk to the customer, map the process, write the spe
 
 **Business problem.** Drawings, specifications, DXF files and schematic albums for every questionnaire are assembled by hand in KOMPAS / AutoCAD / SolidWorks.
 
-**What I did.** Held meetings, arranged the NDA and agreement, and prepared a pilot plan: a test of replacing an element in schematics as the minimum check of the hypothesis. Compared "classic 1C automation" with "AI" and stated honestly where each one ends.
+**What I did.** Held meetings, arranged the NDA and agreement, and prepared a pilot plan: a test of replacing an element in schematics as the minimum check of the hypothesis. Compared "classic ERP customization" with "AI" and stated honestly where each one ends.
 
 ---
 
@@ -105,19 +104,19 @@ I sell, design and build: I talk to the customer, map the process, write the spe
 
 ### 7. Internal finance platform (double-entry bookkeeping)
 
-**Business problem.** The agency needs to see real profit per business line (projects, a subscription product, mailings), accounting for simplified-tax-regime tax, obligations to customers and shared expenses.
+**Business problem.** The agency needs to see real profit per business line (projects, a subscription product, mailings), accounting for turnover tax, obligations to customers and shared expenses.
 
 **What I did.**
 - Full double-entry accounting: accounts, journal entries, an **independent Postgres trigger enforcing entry balance**, an append-only ledger (corrections only by reversal), periods closed forward only, multi-currency.
-- Import of bank statements (CSV in CP1251 and 1C format) with recognition rules and reconciliation.
+- Import of bank statements (CSV and ERP exchange formats) with recognition rules and reconciliation.
 - P&L, Cashflow and Balance Sheet reports; profit in three levels: per source, shared expenses, net.
-- A model specification based on real statements: 6% tax on the full amount received, customer balance top-ups treated as a liability rather than revenue.
+- A model specification based on real statements: a flat 6% turnover tax on the full amount received, customer balance top-ups treated as a liability rather than revenue.
 
 **Stack:** Next.js 15, TypeScript, Prisma 6, PostgreSQL, JWT (refresh-token rotation), Tailwind, recharts.
 
 ---
 
-### 8. promum.router: AI gateway and billing
+### 8. AI gateway and usage billing
 
 **Business problem.** Access to models must be sold to customers with usage accounting in rubles, limits and audit.
 
@@ -137,8 +136,8 @@ I sell, design and build: I talk to the customer, map the process, write the spe
 
 ### 10. Websites and lead generation
 
-- Landing pages for [Promum Tech](https://promum.tech): Next.js 15, lead forms that write to the database and notify Telegram, case pages (an AI assistant for a paint and coatings producer, computer vision for PVC profile geometry control and for metalworking, an AI assistant for tank operations).
-- [TalkLens](https://github.com/Alex-4i/talklens_ai): a website for a conversation-analytics product for e-commerce. Vite + React + Tailwind, five industry versions on subdomains, nginx routing by Host header, Docker, Let's Encrypt, SEO, cookie consent before the analytics script loads, legal documents aligned with Russian personal-data law (152-FZ), self-hosted fonts to avoid cross-border data transfer.
+- Landing pages for an AI agency: Next.js 15, lead forms that write to the database and send chat notifications, case pages (an AI assistant for a paint and coatings producer, computer vision for PVC profile geometry control and for metalworking, an AI assistant for tank operations).
+- A product website for a conversation-analytics product for e-commerce. Vite + React + Tailwind, five industry versions on subdomains, nginx routing by Host header, Docker, Let's Encrypt, SEO, cookie consent before the analytics script loads, legal documents aligned with Russian personal-data law, self-hosted fonts to avoid cross-border data transfer.
 
 ---
 
@@ -154,14 +153,14 @@ I sell, design and build: I talk to the customer, map the process, write the spe
 - **A consultant course for industry** (web app): 30 lessons of 45 minutes, about 130 questions with alternating variants, spaced repetition, 17 SVG diagrams with an automatic text-overlap check, tasks with a reference solution visible only to the AI mentor, automated data and UI checks.
 - **A company dossier system:** from a tax ID and any piece of information, AI tags industry, size and production type and files it into Markdown cards for cross-cuts.
 - **Wake Up!:** a web prototype of an alarm-clock mobile app built from a Figma design (Vite + React).
-- **A blog and content about AI at work:** a Telegram to Instagram pipeline, a funnel, lead magnets, a "keyword / views" metric.
+- **A blog and content about AI at work:** a content pipeline from a messenger channel to Instagram, a funnel, lead magnets, a "keyword / views" metric.
 - A local OCR on PaddleOCR-VL for scans and page photos.
 
 ---
 
 ## How I Work
 
-- **Problem first, technology second.** An audit may end with an honest "this needs classic 1C automation, not AI".
+- **Problem first, technology second.** An audit may end with an honest "this needs classic ERP customization, not AI".
 - **I do not promise what has not been verified.** First a reference set and a measurable hypothesis, then a paid pilot.
 - **Security from the start:** isolation, outbound requests denied by default, anonymization, secrets kept out of repositories.
 - **Verifiability.** Numbers in AI answers are checked by code, the platform has automated tests, and in finance the database guarantees balance.
