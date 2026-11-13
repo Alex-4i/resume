@@ -25,7 +25,9 @@ I sell, design and build: I talk to the customer, map the process, write the spe
 
 ## Case Studies
 
-### 1. Enterprise AI platform for industrial companies
+### 1. Promum AI: enterprise AI platform for industrial companies
+
+**Full description of the platform: [Alex-4i/promum-ai](https://github.com/Alex-4i/promum-ai)**
 
 **Business problem.** Companies running an ERP (including heavily customized legacy versions) want to work with their data and documents through AI, but cannot send data to a public chat and do not trust numbers the model "made up".
 
